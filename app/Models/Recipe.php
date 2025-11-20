@@ -14,6 +14,7 @@ class Recipe extends Model
         'category_id',
         'title',
         'description',
+        'prep_time',
         'cook_time',
         'image_url',
     ];
@@ -26,7 +27,7 @@ class Recipe extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function ingredient()

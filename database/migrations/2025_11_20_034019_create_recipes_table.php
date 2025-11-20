@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->integer('prep_time')->nullable(); // in minutes
             $table->integer('cook_time')->nullable(); // in minutes
             $table->string('image_url')->nullable();
             $table->timestamps();
