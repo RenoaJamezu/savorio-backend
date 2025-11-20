@@ -11,7 +11,6 @@ class Recipe extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
         'title',
         'description',
         'prep_time',
@@ -24,19 +23,20 @@ class Recipe extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function category()
-    {
-        return $this->belongsToMany(Category::class);
-    }
-
+    
     public function ingredient()
     {
         return $this->hasMany(Ingredient::class);
     }
-
+    
     public function instruction()
     {
         return $this->hasMany(Instruction::class);
+    }
+
+    // pivot table relation
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'recipe_category');
     }
 }
