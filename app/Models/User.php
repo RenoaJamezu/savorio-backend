@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'profile_picutre',
         'password',
     ];
 
@@ -44,5 +45,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // relation
+    public function recipe()
+    {
+        return $this->hasMany(Recipe::class);
     }
 }
