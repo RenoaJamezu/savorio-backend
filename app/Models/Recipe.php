@@ -15,6 +15,7 @@ class Recipe extends Model
         'description',
         'prep_time',
         'cook_time',
+        'difficulty',
         'image_url',
     ];
 
@@ -24,12 +25,12 @@ class Recipe extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function ingredient()
+    public function ingredients()
     {
         return $this->hasMany(Ingredient::class);
     }
     
-    public function instruction()
+    public function instructions()
     {
         return $this->hasMany(Instruction::class);
     }

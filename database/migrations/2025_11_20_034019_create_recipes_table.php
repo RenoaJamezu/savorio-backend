@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('prep_time')->nullable();
             $table->integer('cook_time')->nullable();
+            $table->enum('difficulty', ['easy', 'medium', 'hard'])->default('easy');
             $table->string('image_url')->nullable();
             $table->timestamps();
         });

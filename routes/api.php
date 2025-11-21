@@ -1,12 +1,27 @@
 <?php
 
 use App\Http\Controllers\api\v1\AuthController;
+use App\Http\Controllers\api\v1\RecipeController;
 use Illuminate\Support\Facades\Route;
 
-// authentication routes
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+// Public routes
+Route::prefix('v1')->group(function () {
 
-Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/logout', [AuthController::class, 'logout']);
+    // Authentication
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+
+    // Public Recipes
+    Route::get('recipes', [RecipeController::class, 'index']);
+});
+
+// Protected routes (requires authentication)
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+
+    // Authentication
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    // Recipe CRUD
+    Route::apiResource('recipes', RecipeController::class)
+        ->only(['store', 'show', 'update', 'destroy']);
 });
